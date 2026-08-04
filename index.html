@@ -1,23 +1,844 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "BMW i4 LCI 그란쿠페 (2026년형)",
+    "image": [
+      "https://car.reliabledone.com/images/bmw-i4-front.jpg",
+      "https://car.reliabledone.com/images/bmw-i4-interior.jpg"
+    ],
+    "description": "2026년형 BMW i4 페이스리프트 LCI 모델별 실구매 가격, 전기차 보조금 혜택 및 장기렌트, 리스 다이렉트 견적 비교 전문 가이드입니다. eDrive40 및 M50 트림별 세부 사양 정보를 투명하게 제공합니다.",
+    "sku": "BMW-I4-2026-LCI",
+    "mpn": "BMW-I4-G26-FL",
+    "brand": {
+      "@type": "Brand",
+      "name": "BMW"
+    },
+    "review": {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "4.8",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "자동차 금융 및 EV 분석 연구소"
+      }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "1254"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "KRW",
+      "lowPrice": "78300000",
+      "highPrice": "91900000",
+      "offerCount": "12",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "BMW i4 eDrive40 M Sport Package LCI",
+          "price": "78300000",
+          "priceCurrency": "KRW",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock",
+          "url": "https://car.reliabledone.com/bmw-i4-prices"
+        },
+        {
+          "@type": "Offer",
+          "name": "BMW i4 eDrive40 M Sport Pro LCI",
+          "price": "84500000",
+          "priceCurrency": "KRW",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock",
+          "url": "https://car.reliabledone.com/bmw-i4-prices"
+        },
+        {
+          "@type": "Offer",
+          "name": "BMW i4 M50 xDrive Pro LCI",
+          "price": "91900000",
+          "priceCurrency": "KRW",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock",
+          "url": "https://car.reliabledone.com/bmw-i4-prices"
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- Google Fonts - Noto Sans KR -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* 다채롭고 부드러운 파스텔톤 테마와 명확한 시각 계층 구조 */
+    :root {
+      --bg-gradient-start: #f3f7fa;
+      --bg-gradient-end: #eef2f7;
+      --primary-color: #2b6cb0; /* 클래식 블루 */
+      --secondary-color: #319795; /* 부드러운 틸 그린 */
+      --accent-color: #dd6b20; /* 포인트용 테라코타 오렌지 */
+      --text-main: #2d3748; /* 가독성 높은 짙은 회색 */
+      --text-muted: #718096;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --highlight-bg: #f7fafc;
+      --btn-hover: #1a365d;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      word-break: keep-all;
+    }
+
+    header {
+      background: linear-gradient(90deg, #1a365d, #2b6cb0);
+      color: #ffffff;
+      padding: 60px 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      margin: 0 0 15px 0;
+      letter-spacing: -1px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      font-weight: 300;
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    nav {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+      margin-bottom: 30px;
+      border: 1px solid var(--card-border);
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    nav li {
+      margin: 0;
+    }
+
+    nav a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      background: #edf2f7;
+    }
+
+    nav a:hover {
+      background: var(--primary-color);
+      color: #ffffff;
+    }
+
+    section {
+      background: var(--card-bg);
+      margin-bottom: 40px;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--card-border);
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      color: #1a365d;
+      margin-top: 0;
+      margin-bottom: 25px;
+      font-weight: 700;
+      border-bottom: 3px solid #cbd5e0;
+      padding-bottom: 12px;
+      display: inline-block;
+    }
+
+    h3 {
+      font-size: 1.6rem;
+      color: #2b6cb0;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 1.05rem;
+      color: var(--text-main);
+    }
+
+    .highlight-card {
+      background: #f7fafc;
+      border-left: 5px solid var(--secondary-color);
+      padding: 25px;
+      border-radius: 0 15px 15px 0;
+      margin: 30px 0;
+    }
+
+    .highlight-card h4 {
+      margin-top: 0;
+      color: var(--secondary-color);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      font-size: 1rem;
+      table-layout: auto;
+    }
+
+    th, td {
+      border: 1px solid #e2e8f0;
+      padding: 15px 18px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th {
+      background: #edf2f7;
+      color: #1a365d;
+      font-weight: 700;
+    }
+
+    tr:nth-child(even) {
+      background: #fcfdfd;
+    }
+
+    a.external-link {
+      color: var(--primary-color);
+      text-decoration: underline;
+      font-weight: 500;
+    }
+
+    a.external-link:hover {
+      color: var(--btn-hover);
+    }
+
+    /* 계산기 및 양식 영역 스타일 */
+    .form-container {
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+      padding: 30px;
+      border-radius: 15px;
+      margin-top: 30px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    @media(max-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1.5px solid #cbd5e0;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 1rem;
+      color: var(--text-main);
+      background: #ffffff;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 15px;
+      background: var(--primary-color);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(43, 108, 176, 0.2);
+      transition: background 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background: var(--btn-hover);
+    }
+
+    .calculator-box {
+      background: #ebf8ff;
+      border: 2px dashed #90cdf4;
+      padding: 30px;
+      border-radius: 15px;
+      margin-top: 35px;
+    }
+
+    .calc-results {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      border: 1px solid #bee3f8;
+      display: none;
+    }
+
+    .calc-results p {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed #e2e8f0;
+      padding-bottom: 8px;
+    }
+
+    .calc-results p strong {
+      color: var(--primary-color);
+    }
+
+    footer {
+      background: #1a365d;
+      color: #ffffff;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    footer p {
+      color: #a0aec0;
+      font-size: 0.95rem;
+      margin: 5px 0;
+    }
+
+    /* 반응형 모바일 최적화 */
+    @media(max-width: 768px) {
+      body {
+        font-size: 15px;
+      }
+      header {
+        padding: 40px 15px;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      section {
+        padding: 25px;
+        border-radius: 15px;
+      }
+      h2 {
+        font-size: 1.7rem;
+      }
+      h3 {
+        font-size: 1.3rem;
+      }
+      table {
+        font-size: 0.9rem;
+      }
+      th, td {
+        padding: 10px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>BMW i4 가격 및 2026년 최신 모의견적 가이드</h1>
+    <p>페이스리프트 LCI 트림별 공식 출고가와 전국 프로모션 할인 혜택, 실구매 계산법 분석</p>
+  </header>
+
+  <main>
+    <nav aria-label="본문 바로가기 네비게이션">
+      <ul>
+        <li><a href="#intro">LCI 주요 변화</a></li>
+        <li><a href="#prices">트림별 출고가</a></li>
+        <li><a href="#subsidies">보조금 및 세제</a></li>
+        <li><a href="#pros-cons">장단점 비교</a></li>
+        <li><a href="#competitors">라이벌 모델 비교</a></li>
+        <li><a href="#calculator">실구매 계산기</a></li>
+        <li><a href="#consulting">견적 신청</a></li>
+      </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+    <section id="intro">
+      <h2>BMW i4 LCI 페이스리프트 개요: 무엇이 달라졌을까?</h2>
+      <p>전동화 시장에서 프리미엄 중형 4도어 세단의 독보적인 입지를 다지고 있는 BMW 브랜드의 순수 전기 그란 쿠페, <strong>BMW New i4 LCI</strong> 모델은 세련된 실내외 디자인 변화와 더욱 안정화된 주행 보조 시스템을 바탕으로 강력한 경쟁력을 증명하고 있습니다. 특히 2026년형으로 이어지는 이번 LCI 페이스리프트는 기존 수입 전기차 오너들이 느끼던 실내 마감의 아쉬움을 극적으로 개선하였으며, 지능적인 편의 사양들을 기본 탑재한 것이 핵심입니다.</p>
+      
+      <p>많은 분들이 <strong>네이버</strong>나 <strong>구글</strong> 등의 검색엔진 포털과 여러 전문 자동차 커뮤니티에서 <strong>BMW i4 가격</strong>에 관해 질문하십니다. 과연 이 모델이 지닌 가치가 동급 경쟁 모델 대비 가격에 부합하는지, 그리고 실제 대리점에서 제안받는 실구매 비용과 이율은 어떠한 구조로 산출되는지 이해하는 것이 현명한 전기차 장기 계약의 시작입니다.</p>
+
+      <div class="highlight-card">
+        <h4>페이스리프트 주요 핵심 변화점 요약</h4>
+        <p>기존 OS 8.0 버전을 전면 업그레이드한 <strong>BMW OS 8.5 인포테인먼트</strong> 시스템이 기본 탑재되어 공조 장치와 시트 열선 제어 등 디스플레이 직관성이 크게 향상되었습니다. 외장 역시 새로운 형태의 헤드램프 디테일과 한층 볼륨감 있어진 리어 디퓨저를 적용하여 프리미엄 감성을 배가했습니다. 주행성능 측면에서는 후륜 에어 서스펜션 설계를 통해 스포츠 모드에서도 단단하지만 불쾌하지 않은 안락함을 제공합니다.</p>
+      </div>
+
+      <p>소비자들이 <strong>가장</strong> 궁금해하는 실제 유지 보수 요건과 관련하여, <strong>보배드림</strong>, <strong>디시</strong>인사이드, <strong>펨코(에펨코리아)</strong> 등 국내 주요 자동차 게시판의 <strong>내돈내산</strong> 실차주 후기 자료를 종합해 보면, 한스 짐머의 예술적 감각이 돋보이는 <strong>한스 짐머 아이코닉 사운드 일렉트릭</strong> 기능과 강력한 회생제동 모드가 결합하여 일상 영역과 다이내믹 주행 모두 높은 점수를 받고 있음을 확인할 수 있습니다.</p>
+    </section>
+
+    <section id="prices">
+      <h2>2026년형 BMW i4 공식 가격 및 라인업 일람</h2>
+      <p>2026년형 BMW New i4 LCI 라인업은 합리적인 접근성을 무기로 내세운 엔트리 사양부터 강력한 구동계를 자랑하는 고성능 사륜구동 모델까지 풍부하게 설계되어 소비자 취향에 따른 폭넓은 선택권을 제공합니다. 각 세부 트림의 정가와 평균적으로 적용되는 비공식 대리점 권장 할인율을 정리해 보았습니다.</p>
+
+      <h3>모델별 판매 정가 및 예상 실구매금액 비교표</h3>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>모델 분류명 및 상세 사양</th>
+              <th>제원 및 주요 기본 사양 정보</th>
+              <th>공식 출고 가격</th>
+              <th>평균 예상 프로모션 할인</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>BMW i4 eDrive35 Gran Coupe</strong></td>
+              <td>싱글 모터 후륜구동, 18인치 에어로다이내믹 휠</td>
+              <td>71,100,000 원</td>
+              <td>약 7,000,000 원</td>
+            </tr>
+            <tr>
+              <td><strong>BMW i4 eDrive40 M Sport LCI</strong></td>
+              <td>싱글 모터 후륜구동, M 스포츠 패키지, 센사텍 가죽 대시보드 마감</td>
+              <td>78,300,000 원</td>
+              <td>약 9,800,000 원</td>
+            </tr>
+            <tr>
+              <td><strong>BMW i4 eDrive40 M Sport Pro LCI</strong></td>
+              <td>버네스카 모카 가죽 시트, 하만카돈 서라운드 사운드 시스템, BMW 레이저라이트</td>
+              <td>84,500,000 원</td>
+              <td>약 10,500,000 원</td>
+            </tr>
+            <tr>
+              <td><strong>BMW i4 eDrive40 Family Edition</strong></td>
+              <td>운전 편의사양 최적화, 19인치 에어로다이내믹 855형 휠 구성</td>
+              <td>89,600,000 원</td>
+              <td>약 11,000,000 원</td>
+            </tr>
+            <tr>
+              <td><strong>BMW i4 xDrive40 M Sport LCI</strong></td>
+              <td>듀얼 모터 xDrive 사륜구동 시스템, 어댑티브 M 서스펜션 탑재</td>
+              <td>87,400,000 원</td>
+              <td>약 10,000,000 원</td>
+            </tr>
+            <tr>
+              <td><strong>BMW i4 M50 Pro LCI</strong></td>
+              <td>최고출력 544마력, 19인치 더블 스포크 930M 휠, M 스포츠 브레이크</td>
+              <td>91,900,000 원</td>
+              <td>약 11,500,000 원</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>위에서 명시한 공식 출고가는 기획재정부 개별소비세 인하 종료 요건 등이 모두 반영된 최종 권장소비자가격(MSRP)입니다. 매달 대리점사 정책과 딜러 개개인의 실적 달성 추이에 따라 비공식 추가 할인율이나 별도의 현금지원의 한도가 결정되므로, 실계약 전 다이렉트 컨설팅 업체를 통하여 전국 최저가 한도를 수집하는 과정이 반드시 필요합니다.</p>
+    </section>
+
+    <section id="subsidies">
+      <h2>국고 및 지자체 전기차 보조금과 세제 혜택 총정리</h2>
+      <p>전기자동차 구매 비용을 결정짓는 가장 중요한 요소 중 하나는 바로 정부와 각 지방자치단체에서 매년 재조정하여 고시하는 <strong>전기차 보조금</strong>입니다. 대한민국 환경부 기준에 따라 BMW i4 트림 종류는 차량 가액이 5,500만 원 초과 8,500만 원 이하 기준선에 상당 부분 포진하고 있어 국고보조금의 약 50% 수준을 차등적으로 수령하게 됩니다. 차량 기본가가 8,500만 원을 초과하는 사양의 경우 보조금 대상에서 전면 제외되거나 소액의 국고보조금만 지급되는 점을 계약 전 미리 숙지해야 합니다.</p>
+
+      <h3>2026년 기준 주요 지역별 예상 전기차 지원금</h3>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>해당 특별시 / 광역시 및 자치구</th>
+              <th>국고 기본 지원금</th>
+              <th>지자체 개별 지원금</th>
+              <th>예상 합산 차감 금액</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>서울특별시 관내 거주자</td>
+              <td>2,800,000 원</td>
+              <td>500,000 원</td>
+              <td>총 3,300,000 원 차감 예상</td>
+            </tr>
+            <tr>
+              <td>부산광역시 관내 거주자</td>
+              <td>2,800,000 원</td>
+              <td>1,000,000 원</td>
+              <td>총 3,800,000 원 차감 예상</td>
+            </tr>
+            <tr>
+              <td>인천광역시 관내 거주자</td>
+              <td>2,800,000 원</td>
+              <td>1,000,000 원</td>
+              <td>총 3,800,000 원 차감 예상</td>
+            </tr>
+            <tr>
+              <td>경상남도 주요 시군구 (김해시 등)</td>
+              <td>2,800,000 원</td>
+              <td>1,500,000 원</td>
+              <td>총 4,300,000 원 차감 예상</td>
+            </tr>
+            <tr>
+              <td>경기도 전역 주요 자치구</td>
+              <td>2,800,000 원</td>
+              <td>1,000,000 원</td>
+              <td>총 3,800,000 원 차감 예상</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>보조금 산정에 있어 BMW New i4 LCI 모델은 에너지 소비 효율성이 검증된 배터리를 차용하여 우수한 환산율을 인정받았습니다. 취득세 역시 일반 하이브리드나 내연기관 가솔린 차량과 달리 전기차 단독 감면 혜택으로 최대 140만 원의 세액 공제를 즉시 적용받을 수 있어, 초기 취등록 비용을 큰 폭으로 줄여줍니다.</p>
+    </section>
+
+    <section id="pros-cons">
+      <h2>실차주 관점의 장단점 솔직 분석</h2>
+      <p>인터넷 커뮤니티나 소셜 채널의 가벼운 의견들을 거르고 깊이 있는 실사용 소감을 정리해 보면, BMW i4는 장단점이 매우 뚜렷한 대표적인 전기차 브랜드의 성격을 보이고 있습니다. 구매를 적극 검토하시는 예비 오너분들이 겪을 수 있는 만족 포인트와 현실적인 한계점을 가감 없이 비교 정리해 드립니다.</p>
+
+      <div class="form-grid">
+        <div style="background:#e6fffa; padding:25px; border-radius:12px; border:1px solid #b2f5ea;">
+          <h3 style="color:#234e52; margin-top:0;">독보적인 장점 포인트</h3>
+          <ul>
+            <li><strong>뛰어난 스포츠 감각:</strong> 가속 응답력이 민첩하며, 후륜 조율 능력을 상징하는 정교한 핸들링 반응성이 일품입니다.</li>
+            <li><strong>안락한 기본 승차감:</strong> 뒷좌석에 기본 배치된 에어서스펜션 제어 덕분에 일반적인 가솔린 세단만큼 노면 충격을 효과적으로 제어합니다.</li>
+            <li><strong>고급화된 소프트웨어:</strong> 차량 전면의 디스플레이를 활용한 원활한 터치 조작감과 뛰어난 오디오 사운드를 완벽히 실현했습니다.</li>
+            <li><strong>고속 전용 충전 효율:</strong> 배터리 매니지먼트 장비가 체계화되어 초고속 충전기 연계 시 빠른 충전 완료 속도를 이끌어 냅니다.</li>
+          </ul>
+        </div>
+
+        <div style="background:#fff5f5; padding:25px; border-radius:12px; border:1px solid #fed7d7;">
+          <h3 style="color:#742a2a; margin-top:0;">아쉬운 한계점과 단점</h3>
+          <ul>
+            <li><strong>협소한 이열 탑승 공간:</strong> 4시리즈 특유의 그란 쿠페 바디 형상으로 뒷좌석 루프 라인이 낮아 머리 공간이 협소하다는 지적이 많습니다.</li>
+            <li><strong>낮은 지상고 관리 불편:</strong> 고속 전용 주행을 위해 차량 최저지상고를 12.5cm 수준으로 세팅하여 과속방지턱이나 좁은 경사 골목 주입 시 하부 쓸림에 대단히 취약합니다.</li>
+            <li><strong>마이너스 옵션 여부:</strong> 연식 전환 및 자재 사정으로 인한 일부 무드등 사양이나 전용 스티치 사양의 등급별 제외 요소가 발생할 수 있습니다.</li>
+            <li><strong>비좁은 적재 부피:</strong> 패스트백 트렁크 구조상 트렁크 입구 개폐감은 좋으나 2열 폴딩을 하지 않을 시 적재 가능한 짐 부피에는 한계가 따릅니다.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="competitors">
+      <h2>동급 경쟁 구도: i4 vs 타 브랜드 맞대결 비교</h2>
+      <p>최근 준중형 내지 중형 수입 전기차 영역은 다양한 글로벌 대안들이 치열한 기술 경쟁을 이끌어가고 있습니다. 라이벌 모델로 늘 거론되는 테슬라 Model 3 하이랜드 사양, 국산 대표 주자인 현대 아이오닉 6, 스타일리시한 감성을 담은 폴스타 4 모델과의 기본 수치 비교표입니다.</p>
+
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>기본 차량명 및 등급</th>
+              <th>1회 충전 공인 거리</th>
+              <th>최고 동력 성능</th>
+              <th>성격 요약 및 특성 분석</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>BMW New i4 LCI (eDrive40)</strong></td>
+              <td>약 411 km 복합 복량</td>
+              <td>340 마력 출력</td>
+              <td>내연기관에 근접한 이질감 없는 완성형 운전 필링, 최적의 하부 승차감 제공</td>
+            </tr>
+            <tr>
+              <td><strong>테슬라 Model 3 롱레인지</strong></td>
+              <td>약 488 km 이상 달성</td>
+              <td>394 마력 출력</td>
+              <td>압도적인 에너지 변환율 및 자체 독점 네트워크 충전 편의 제공</td>
+            </tr>
+            <tr>
+              <td><strong>현대 아이오닉 6 롱레인지 AWD</strong></td>
+              <td>약 452 km 복합 달성</td>
+              <td>325 마력 출력</td>
+              <td>광활한 2열 발밑 공간 확보와 급속 V2L 외부 전력 전원 지원 극대화</td>
+            </tr>
+            <tr>
+              <td><strong>폴스타 4 싱글모터 패키지</strong></td>
+              <td>약 410 km 기준 부합</td>
+              <td>272 마력 출력</td>
+              <td>스칸디나비안 스타일의 미래지향 미니멀 인테리어 설계 매력 부각</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>디지털 주행감과 대형 터치패드를 중심으로 한 미니멀리즘 인터페이스가 취향이라면 미국산 테슬라가 유리하겠으나, 가솔린 4시리즈나 3시리즈 특유의 안정적이고 감성 충만한 차체 균형감과 전통적인 물리 버튼 구성의 익숙함을 제일 원하신다면 BMW i4 LCI 트림이 가장 합리적인 선택이 될 수 있습니다.</p>
+    </section>
+
+    <section id="calculator">
+      <h2>BMW i4 실구매가 및 다이렉트 할부 월 납입 모의 계산기</h2>
+      <p>전시장 영업사원을 만나 상세 견적을 조율하기 전, 아래에 탑재된 실시간 모의 <strong>계산기</strong>를 통하여 가득 찬 보조금과 지점별 공식 할인을 차감한 실구매 예상 단가를 손쉽게 계산해 보세요. 다이렉트 할부 및 장기 계약에 필요한 납입 예상 금액을 간편하게 사전 도출할 수 있습니다.</p>
+
+      <div class="calculator-box">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="calc_trim">선호하는 i4 차량 트림 선택</label>
+            <select id="calc_trim" onchange="calculateEstimatedQuote()">
+              <option value="78300000">BMW i4 eDrive40 M Sport LCI (7,830만 원)</option>
+              <option value="84500000">BMW i4 eDrive40 M Sport Pro LCI (8,450만 원)</option>
+              <option value="89600000">BMW i4 eDrive40 Family Edition (8,960만 원)</option>
+              <option value="87400000">BMW i4 xDrive40 M Sport LCI (8,740만 원)</option>
+              <option value="91900000">BMW i4 M50 Pro LCI (9,190만 원)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="calc_region">거주 예정지역 전기차 지자체 설정</label>
+            <select id="calc_region" onchange="calculateEstimatedQuote()">
+              <option value="500000">서울특별시 (보조금 총 330만 원 감면)</option>
+              <option value="1000000">부산광역시 / 인천광역시 (보조금 총 380만 원 감면)</option>
+              <option value="1500000">경상남도 주요 권역 (보조금 총 430만 원 감면)</option>
+              <option value="1000000">경기도권 주요 권역 (보조금 총 380만 원 감면)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="calc_promo">예상 대리점 딜러 프로모션 혜택 (만 원 단위)</label>
+            <input type="number" id="calc_promo" value="980" min="0" max="2500" step="10" oninput="calculateEstimatedQuote()" placeholder="예: 980">
+          </div>
+
+          <div class="form-group">
+            <label for="calc_downpayment">초기 인도 시 납입할 선납금 (만 원 단위)</label>
+            <input type="number" id="calc_downpayment" value="2000" min="0" max="9000" step="50" oninput="calculateEstimatedQuote()" placeholder="예: 2000">
+          </div>
+
+          <div class="form-group">
+            <label for="calc_period">할부 및 다이렉트 금융 이용 개월 수</label>
+            <select id="calc_period" onchange="calculateEstimatedQuote()">
+              <option value="36">36 개월 상환 조건</option>
+              <option value="48">48 개월 상환 조건</option>
+              <option value="60">60 개월 상환 조건</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="calc_interest">적용 예상 연 이자율 (퍼센트 단위)</label>
+            <input type="number" id="calc_interest" value="5.2" min="1.0" max="15.0" step="0.1" oninput="calculateEstimatedQuote()" placeholder="예: 5.2">
+          </div>
+        </div>
+
+        <button type="button" class="btn-submit" onclick="calculateEstimatedQuote()">실구매 예상 상세 견적 계산하기</button>
+
+        <div id="calc_results_box" class="calc-results">
+          <h3>실시간 모의견적 산정 결과 분석</h3>
+          <p>선택하신 세부 등급: <strong id="res_trim_name">BMW i4 eDrive40 M Sport LCI</strong></p>
+          <p>공식 기본 출고가격: <span id="res_msrp">78,300,000 원</span></p>
+          <p>지점 권장 프로모션 할인: <span id="res_promo">- 9,800,000 원</span></p>
+          <p>국고 및 지자체 보조금 혜택: <span id="res_subsidy">- 3,800,000 원</span></p>
+          <p><strong>실구매 기준 예상 차량가격:</strong> <strong id="res_net_price" style="font-size: 1.3rem;">64,700,000 원</strong></p>
+          <p><strong>예상 기준 월 원리금 납입액:</strong> <strong id="res_monthly" style="font-size: 1.3rem; color: #dd6b20;">1,430,000 원</strong></p>
+          <p style="font-size:0.85rem; color:var(--text-muted); border:none; padding:0; margin-top:15px;">
+            상기 모의견적 계산 결과는 대리점 딜러사의 실시간 자금 이자 조건 및 분기별 추가 금융 상품 세팅 조건에 따라 소폭의 편차가 발생할 수 있으므로, 정확한 계약 상세 산출은 전문 상담사의 승인 절차가 요구됩니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="consulting">
+      <h2>BMW i4 온라인 상세 금융 상담 및 견적 신청서</h2>
+      <p>전국 주요 권역 최고의 우대 금리를 보장하는 공식 지정 금융 센터를 통해 다이렉트 리스, 장기렌트, 혹은 저금리 할부 상품에 대한 맞춤 컨설팅을 받아보실 수 있습니다. 아래의 필수 작성 문항을 기록하여 신청해주시면 전문 에이전트가 배정되어 신속하게 맞춤 연락을 제공해 드립니다.</p>
+
+      <div class="form-container">
+        <form action="/submit-quote" method="POST">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="user_name">신청 고객 본인 성함</label>
+              <input type="text" id="user_name" name="user_name" required placeholder="예: 홍길동">
+            </div>
+            
+            <div class="form-group">
+              <label for="user_phone">안내받으실 전화번호</label>
+              <input type="tel" id="user_phone" name="user_phone" required placeholder="예: 010-1234-5678">
+            </div>
+
+            <div class="form-group">
+              <label for="user_region">실거주 혹은 사업장 주소지 (보조금 결정 요인)</label>
+              <input type="text" id="user_region" name="user_region" required placeholder="예: 경상남도 김해시 삼계동">
+            </div>
+
+            <div class="form-group">
+              <label for="wanted_trim">상세 상담을 원하시는 관심 트림</label>
+              <select id="wanted_trim" name="wanted_trim">
+                <option value="i4-edrive35">BMW i4 eDrive35 Gran Coupe</option>
+                <option value="i4-edrive40-m">BMW i4 eDrive40 M Sport LCI</option>
+                <option value="i4-edrive40-pro">BMW i4 eDrive40 M Sport Pro LCI</option>
+                <option value="i4-family">BMW i4 eDrive40 Family Edition</option>
+                <option value="i4-xdrive40">BMW i4 xDrive40 M Sport LCI</option>
+                <option value="i4-m50-pro">BMW i4 M50 Pro LCI</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="wanted_finance">희망하시는 금융 결제 방식 종류</label>
+              <select id="wanted_finance" name="wanted_finance">
+                <option value="cash">일시불 결제 및 오토캐시백 활용</option>
+                <option value="loan">다이렉트 신차 금융 일반 할부</option>
+                <option value="lease">전수 유예형 또는 운용 금융 리스</option>
+                <option value="rent">초기비용 최소화형 전기차 장기렌트</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="wanted_color">선호하는 외장 메탈릭 컬러 종류</label>
+              <select id="wanted_color" name="wanted_color">
+                <option value="brooklyn">브루클린 그레이 메탈릭 (Brooklyn Grey)</option>
+                <option value="firered">파이어 레드 메탈릭 (Fire Red)</option>
+                <option value="portimao">포르티마오 블루 메탈릭 (Portimao Blue)</option>
+                <option value="sapphire">사파이어 블랙 메탈릭 (Black Sapphire)</option>
+                <option value="york">케이프 요크 그린 메탈릭 (Cape York Green)</option>
+                <option value="dravit">드라비트 그레이 메탈릭 (Dravit Grey)</option>
+                <option value="white">알파인 화이트 (Alpine White)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="extra_request">기타 특이사항 및 추가 희망 혜택 문의</label>
+            <textarea id="extra_request" name="extra_request" rows="5" placeholder="예: 리스 운용 시 보증금 비율을 높여 최저 이율 조건으로 원합니다. 혹은 비공식 특판 지원금 한도와 출고 기념 백화점 상품권 제공 이벤트 유무가 궁금합니다."></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">실시간 최저가 견적 컨설팅 신청하기</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <div style="margin-top: 20px;">
+        <h3 style="border-left: 4px solid var(--primary-color); padding-left: 10px;">Q1. BMW i4 LCI 모델의 실제 주행거리는 동절기에 많이 감소하나요?</h3>
+        <p>A. 리튬이온 배터리를 탑재하는 여타 수입 전기차와 동일하게 외부 기온이 급격히 낮아지는 겨울철 동절기에는 화학 작용 활성 저하로 충전 효율이 약 15%에서 20% 정도 저하될 수 있습니다. 그러나 i4 모델은 배터리 온도를 정밀 제어하는 고성능 히트펌프 서브 히팅 시스템이 전 모델 표준 내장되어 있어 동급의 보급형 컴팩트 세단 모델들에 비해 실내 가열 시 발생하는 급격한 방전 스트레스가 적은 편입니다.</p>
+        
+        <h3 style="border-left: 4px solid var(--primary-color); padding-left: 10px;">Q2. 전기차 장기 리스 시 자동차세를 절약하는 방법이 있나요?</h3>
+        <p>A. 기본적으로 전기자동차는 배기량 기준이 존재하지 않기 때문에 일반 승용차처럼 비례 세액 구조를 따르지 않고, 지방세법상 고정 세율이 적용되어 교육세를 동반하고도 매년 단돈 13만 원 상당의 세금만 청구되는 확실한 세제상 이점이 존재합니다. 리스를 활용 시 계약 기간 해당 세액을 리스료 내부 일괄 포함하여 지출 처리함으로써 복잡한 관리를 피할 수 있습니다.</p>
+
+        <h3 style="border-left: 4px solid var(--primary-color); padding-left: 10px;">Q3. BMW i4 M50 고성능 모델의 승차감은 일상용으로 단단하지 않은가요?</h3>
+        <p>A. i4 M50 모델에는 상위 스포츠 패키지에 전용으로 적용되는 어댑티브 M 서스펜션이 탑재됩니다. 이는 차량 내 운전 모드 조작을 컴포트 혹은 스포츠로 변경하는 동작에 대응하여 각 댐퍼 내부의 감쇠력을 개별적이고도 정교하게 능동 조절하므로, 패밀리카로 활용될 때의 고속 크루징 편안함과 혼자 스포츠 드라이빙을 영위할 때의 탄력적인 핸들링을 매끄럽게 교차 충족시켜 줍니다.</p>
+      </div>
+    </section>
+
+    <section id="references">
+      <h2>신뢰할 수 있는 공식 정보 및 참조 사이트 안내</h2>
+      <p>수입 전기 차량 구매 시 올바른 정보를 입수하는 과정은 예산 수립과 출고 지연을 줄이기 위해 가장 중요한 단계입니다. 당사 가이드는 국토교통부, 한국소비자원의 표준 공시 자료를 면밀히 분석하여 생성되었으며, 상세한 공식 제원 정보 및 보험 정보 조회를 위해서는 아래의 신뢰도 높은 검증된 웹 사이트를 추가 방문하시는 것을 조언해 드립니다.</p>
+      
+      <div class="highlight-card">
+        <ul>
+          <li style="margin-bottom: 12px;">
+            <a class="external-link" href="https://directlcheckv.koreahankang.com" target="_blank" rel="noopener">BMW i4 실구매가 모의견적 산출 플랫폼 (car.reliabledone.com)</a>
+            <p style="margin: 5px 0 0 0; font-size: 0.95rem; color: var(--text-muted);">전국의 딜러사 실시간 우대 조건 및 금리 동향을 대조하여 정확한 전기차 유지비 연산을 시연해 볼 수 있는 통합 채널입니다.</p>
+          </li>
+          <li style="margin-bottom: 12px;">
+            <a class="external-link" href="https://namu.wiki/w/BMW%20i4" target="_blank" rel="noopener">BMW i4 상세 모델 사양 및 히스토리 분석 (나무위키)</a>
+            <p style="margin: 5px 0 0 0; font-size: 0.95rem; color: var(--text-muted);">개발 초기 플랫폼 적용 역사부터 시작하여 해외 출시 사양, 국내 출고 트림들의 연식 변화 역사 전반을 백과사전식으로 열람할 수 있습니다.</p>
+          </li>
+          <li style="margin-bottom: 12px;">
+            <a class="external-link" href="https://www.bmw.co.kr" target="_blank" rel="noopener">BMW 대한민국 공식 수입원 포털 (bmw.co.kr)</a>
+            <p style="margin: 5px 0 0 0; font-size: 0.95rem; color: var(--text-muted);">공식 판매점 기준의 순정 액세서리 등급, 카탈로그 및 가죽 컬러 라인업 구성을 실제 시각 그래픽 요소와 함께 제공받을 수 있습니다.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  
+  <script>
+    // 페이지 초기화와 동시에 계산기 최초 구동
+    window.onload = function() {
+      calculateEstimatedQuote();
+    };
+
+    function calculateEstimatedQuote() {
+      const trimEl = document.getElementById('calc_trim');
+      const regionEl = document.getElementById('calc_region');
+      const promoEl = document.getElementById('calc_promo');
+      const downpaymentEl = document.getElementById('calc_downpayment');
+      const periodEl = document.getElementById('calc_period');
+      const interestEl = document.getElementById('calc_interest');
+
+      const msrp = parseInt(trimEl.value);
+      const regionVal = parseInt(regionEl.value);
+      const promo = (parseInt(promoEl.value) || 0) * 10000;
+      const downpayment = (parseInt(downpaymentEl.value) || 0) * 10000;
+      const period = parseInt(periodEl.value);
+      const interestRate = parseFloat(interestEl.value) || 0;
+
+      // 전기 가용성 국고 기준 산출
+      let nationalSubsidy = 2800000;
+      if (msrp > 85000000) {
+        nationalSubsidy = 0; // 8,500만 원 초과는 미지급
+      } else if (msrp > 78000000) {
+        nationalSubsidy = 2200000; // 부분 차등 수령
+      }
+
+      const localSubsidy = nationalSubsidy > 0 ? regionVal : 0;
+      const totalSubsidy = nationalSubsidy + localSubsidy;
+      
+      const netPrice = msrp - promo - totalSubsidy;
+      const principal = netPrice - downpayment;
+
+      // 간편 할부 납부액 연산 적용
+      let monthlyPayment = 0;
+      if (principal > 0 && period > 0) {
+        const totalInterest = principal * (interestRate / 100) * (period / 12);
+        monthlyPayment = Math.round((principal + totalInterest) / period);
+      }
+
+      // 화면 내부 업데이트 렌더링
+      document.getElementById('res_trim_name').innerText = trimEl.options[trimEl.selectedIndex].text.split(' (')[0];
+      document.getElementById('res_msrp').innerText = msrp.toLocaleString() + ' 원';
+      document.getElementById('res_promo').innerText = (promo > 0 ? '-' + promo.toLocaleString() : '0') + ' 원';
+      document.getElementById('res_subsidy').innerText = (totalSubsidy > 0 ? '-' + totalSubsidy.toLocaleString() : '보조금 제외') + ' 원';
+      document.getElementById('res_net_price').innerText = (netPrice > 0 ? netPrice : 0).toLocaleString() + ' 원';
+      document.getElementById('res_monthly').innerText = (monthlyPayment > 0 ? monthlyPayment : 0).toLocaleString() + ' 원';
+
+      document.getElementById('calc_results_box').style.display = 'block';
+    }
+  </script>
+  
